@@ -3,7 +3,7 @@ import { XMLParser } from 'fast-xml-parser';
 import * as XLSX from 'xlsx';
 import { useGoogleLogin } from '@react-oauth/google';
 import './App.css';
-import Logo from './assets/logo.svg';
+import Logo from './assets/logo.png';
 
 // Simple SVG Icons
 const FileIcon = () => (

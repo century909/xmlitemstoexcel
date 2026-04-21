@@ -13,10 +13,10 @@ export default defineConfig({
         name: 'Consolidado de Ítems XML',
         short_name: 'Ítems XML',
         description: 'Extrae y consolida ítems de facturas electrónicas XML.',
-        theme_color: '#2563EB',
+        theme_color: '#E11D48',
         icons: [
-          { src: 'pwa-icon.svg', sizes: 'any', type: 'image/svg+xml', purpose: 'any' },
-          { src: 'pwa-icon.svg', sizes: 'any', type: 'image/svg+xml', purpose: 'maskable' }
+          { src: 'pwa-icon.png', sizes: '512x512', type: 'image/png' },
+          { src: 'pwa-icon.png', sizes: '512x512', type: 'image/png', purpose: 'maskable' }
         ]
       }
     })
