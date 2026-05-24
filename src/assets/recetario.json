@@ -1,0 +1,895 @@
+{
+  "recipes": [
+    {
+      "name": "CANELONES DE POLLO",
+      "sheet": "POLLOS",
+      "baseDiners": 10,
+      "ingredients": [
+        {
+          "name": "Pechuga de Pollo",
+          "qtyPerPerson": 0.28,
+          "unit": "Kg",
+          "isSection": false
+        },
+        {
+          "name": "Queso Roquefort",
+          "qtyPerPerson": 0.015,
+          "unit": "Kg",
+          "isSection": false
+        },
+        {
+          "name": "Crema de Leche",
+          "qtyPerPerson": 0.015,
+          "unit": "Litros",
+          "isSection": false
+        },
+        {
+          "name": "Panqueques",
+          "qtyPerPerson": 0,
+          "unit": "",
+          "isSection": true
+        },
+        {
+          "name": "Leche",
+          "qtyPerPerson": 0.072,
+          "unit": "Litros",
+          "isSection": false
+        },
+        {
+          "name": "Huevo",
+          "qtyPerPerson": 0.58,
+          "unit": "Unidades",
+          "isSection": false
+        },
+        {
+          "name": "Harina",
+          "qtyPerPerson": 0.03,
+          "unit": "Kg",
+          "isSection": false
+        },
+        {
+          "name": "Manteca",
+          "qtyPerPerson": 0.008,
+          "unit": "Kg",
+          "isSection": false
+        },
+        {
+          "name": "Salsa Blanca",
+          "qtyPerPerson": 0,
+          "unit": "",
+          "isSection": true
+        },
+        {
+          "name": "Leche",
+          "qtyPerPerson": 0.075,
+          "unit": "Litros",
+          "isSection": false
+        },
+        {
+          "name": "Manteca",
+          "qtyPerPerson": 0.005,
+          "unit": "Kg",
+          "isSection": false
+        },
+        {
+          "name": "Nuez Moscada",
+          "qtyPerPerson": 0.003,
+          "unit": "Kg",
+          "isSection": false
+        },
+        {
+          "name": "Maizena",
+          "qtyPerPerson": 0.015,
+          "unit": "Kg",
+          "isSection": false
+        }
+      ]
+    },
+    {
+      "name": "Pollo a la crema",
+      "sheet": "POLLOS",
+      "baseDiners": 10,
+      "ingredients": [
+        {
+          "name": "Pechuga de Pollo",
+          "qtyPerPerson": 0.52,
+          "unit": "Kg",
+          "isSection": false
+        },
+        {
+          "name": "SALSA",
+          "qtyPerPerson": 0,
+          "unit": "",
+          "isSection": true
+        },
+        {
+          "name": "Queso Roquefort",
+          "qtyPerPerson": 0.015,
+          "unit": "Kg",
+          "isSection": false
+        },
+        {
+          "name": "Crema de Leche",
+          "qtyPerPerson": 0.015,
+          "unit": "Litros",
+          "isSection": false
+        },
+        {
+          "name": "Cubitos",
+          "qtyPerPerson": 0.4,
+          "unit": "Kg",
+          "isSection": false
+        }
+      ]
+    },
+    {
+      "name": "Strogonoff de Pollo",
+      "sheet": "POLLOS",
+      "baseDiners": 5,
+      "ingredients": [
+        {
+          "name": "Pechuga de Pollo",
+          "qtyPerPerson": 0.28,
+          "unit": "Kg",
+          "isSection": false
+        },
+        {
+          "name": "SALSA",
+          "qtyPerPerson": 0,
+          "unit": "",
+          "isSection": true
+        },
+        {
+          "name": "Manteca",
+          "qtyPerPerson": 0.02,
+          "unit": "Kg",
+          "isSection": false
+        },
+        {
+          "name": "Vino Blanco",
+          "qtyPerPerson": 0.05,
+          "unit": "Litros",
+          "isSection": false
+        },
+        {
+          "name": "Kechup",
+          "qtyPerPerson": 0.04,
+          "unit": "Kg",
+          "isSection": false
+        },
+        {
+          "name": "Mostaza",
+          "qtyPerPerson": 0.04,
+          "unit": "Kg",
+          "isSection": false
+        },
+        {
+          "name": "Cebolla",
+          "qtyPerPerson": 0.02,
+          "unit": "Kg",
+          "isSection": false
+        },
+        {
+          "name": "Crema de Leche",
+          "qtyPerPerson": 0.04,
+          "unit": "Litros",
+          "isSection": false
+        },
+        {
+          "name": "Harina",
+          "qtyPerPerson": 0.01,
+          "unit": "Kg",
+          "isSection": false
+        }
+      ]
+    },
+    {
+      "name": "Romanita de Pollo",
+      "sheet": "POLLOS",
+      "baseDiners": 10,
+      "ingredients": [
+        {
+          "name": "Pechuga de Pollo",
+          "qtyPerPerson": 0.22,
+          "unit": "Kg",
+          "isSection": false
+        },
+        {
+          "name": "Huevo",
+          "qtyPerPerson": 1.7,
+          "unit": "Unidades",
+          "isSection": false
+        },
+        {
+          "name": "Harina",
+          "qtyPerPerson": 0.05,
+          "unit": "Kg",
+          "isSection": false
+        }
+      ]
+    },
+    {
+      "name": "Pollo a la Jardinera",
+      "sheet": "POLLOS",
+      "baseDiners": 10,
+      "ingredients": [
+        {
+          "name": "Pechuga de Pollo",
+          "qtyPerPerson": 0.52,
+          "unit": "Kg",
+          "isSection": false
+        },
+        {
+          "name": "Locote Verde",
+          "qtyPerPerson": 1.7,
+          "unit": "Kg",
+          "isSection": false
+        },
+        {
+          "name": "Locote rojo",
+          "qtyPerPerson": 0.05,
+          "unit": "Kg",
+          "isSection": false
+        },
+        {
+          "name": "Cebolla morada",
+          "qtyPerPerson": 0,
+          "unit": "",
+          "isSection": true
+        },
+        {
+          "name": "Zanahoria",
+          "qtyPerPerson": 0,
+          "unit": "",
+          "isSection": true
+        },
+        {
+          "name": "Crema de Leche",
+          "qtyPerPerson": 0,
+          "unit": "",
+          "isSection": true
+        },
+        {
+          "name": "Arizco",
+          "qtyPerPerson": 0,
+          "unit": "",
+          "isSection": true
+        },
+        {
+          "name": "Ajo",
+          "qtyPerPerson": 0,
+          "unit": "",
+          "isSection": true
+        },
+        {
+          "name": "Vino Blanco",
+          "qtyPerPerson": 0,
+          "unit": "",
+          "isSection": true
+        }
+      ]
+    },
+    {
+      "name": "Pollo a la Jardinera",
+      "sheet": "POLLOS",
+      "baseDiners": 10,
+      "ingredients": [
+        {
+          "name": "Pechuga de Pollo",
+          "qtyPerPerson": 0.52,
+          "unit": "Kg",
+          "isSection": false
+        },
+        {
+          "name": "Locote Verde",
+          "qtyPerPerson": 1.7,
+          "unit": "Kg",
+          "isSection": false
+        },
+        {
+          "name": "Locote rojo",
+          "qtyPerPerson": 0.05,
+          "unit": "Kg",
+          "isSection": false
+        },
+        {
+          "name": "Cebolla morada",
+          "qtyPerPerson": 0,
+          "unit": "",
+          "isSection": true
+        },
+        {
+          "name": "Zanahoria",
+          "qtyPerPerson": 0,
+          "unit": "",
+          "isSection": true
+        },
+        {
+          "name": "Crema de Leche",
+          "qtyPerPerson": 0,
+          "unit": "",
+          "isSection": true
+        },
+        {
+          "name": "Arizco",
+          "qtyPerPerson": 0,
+          "unit": "",
+          "isSection": true
+        },
+        {
+          "name": "Ajo",
+          "qtyPerPerson": 0,
+          "unit": "",
+          "isSection": true
+        },
+        {
+          "name": "Vino Blanco",
+          "qtyPerPerson": 0,
+          "unit": "",
+          "isSection": true
+        },
+        {
+          "name": "Jamonada",
+          "qtyPerPerson": 0,
+          "unit": "",
+          "isSection": true
+        },
+        {
+          "name": "Queso Sandwick",
+          "qtyPerPerson": 0,
+          "unit": "",
+          "isSection": true
+        }
+      ]
+    },
+    {
+      "name": "Comida China",
+      "sheet": "Buffet de Bocaditos",
+      "baseDiners": 10,
+      "ingredients": [
+        {
+          "name": "Pierna de Cerdo",
+          "qtyPerPerson": 0.26,
+          "unit": "Kg",
+          "isSection": false
+        },
+        {
+          "name": "Locote Rojo",
+          "qtyPerPerson": 0.05,
+          "unit": "Kg",
+          "isSection": false
+        },
+        {
+          "name": "Locote Verde",
+          "qtyPerPerson": 0.1,
+          "unit": "Kg",
+          "isSection": false
+        },
+        {
+          "name": "Zanahoria",
+          "qtyPerPerson": 0.05,
+          "unit": "Kg",
+          "isSection": false
+        },
+        {
+          "name": "Cebolla",
+          "qtyPerPerson": 0.1,
+          "unit": "Kg",
+          "isSection": false
+        },
+        {
+          "name": "Ajo",
+          "qtyPerPerson": 0.1,
+          "unit": "Kg",
+          "isSection": false
+        },
+        {
+          "name": "Fideo Chino",
+          "qtyPerPerson": 0.1,
+          "unit": "Kg",
+          "isSection": false
+        },
+        {
+          "name": "Brotes de soja",
+          "qtyPerPerson": 0.02,
+          "unit": "Kg",
+          "isSection": false
+        }
+      ]
+    },
+    {
+      "name": "Lomo Relleno",
+      "sheet": "Buffet de Bocaditos",
+      "baseDiners": 10,
+      "ingredients": [
+        {
+          "name": "Pierna de Cerdo",
+          "qtyPerPerson": 0.23,
+          "unit": "Kg",
+          "isSection": false
+        },
+        {
+          "name": "Queso Sandwich",
+          "qtyPerPerson": 0.04,
+          "unit": "Kg",
+          "isSection": false
+        },
+        {
+          "name": "Jamonada",
+          "qtyPerPerson": 0.03,
+          "unit": "Kg",
+          "isSection": false
+        },
+        {
+          "name": "Panceta",
+          "qtyPerPerson": 0.025,
+          "unit": "Kg",
+          "isSection": false
+        },
+        {
+          "name": "Cebolla",
+          "qtyPerPerson": 0.05,
+          "unit": "Kg",
+          "isSection": false
+        },
+        {
+          "name": "SALSA",
+          "qtyPerPerson": 0,
+          "unit": "",
+          "isSection": true
+        },
+        {
+          "name": "Panceta",
+          "qtyPerPerson": 0.01,
+          "unit": "Kg",
+          "isSection": false
+        },
+        {
+          "name": "Cubito",
+          "qtyPerPerson": 0.2,
+          "unit": "Kg",
+          "isSection": false
+        },
+        {
+          "name": "Vino Blanco",
+          "qtyPerPerson": 0.02,
+          "unit": "Litros",
+          "isSection": false
+        }
+      ]
+    },
+    {
+      "name": "Empanada de Carne",
+      "sheet": "Buffet de Bocaditos",
+      "baseDiners": 5,
+      "ingredients": [
+        {
+          "name": "Carne Molida",
+          "qtyPerPerson": 0.2,
+          "unit": "Kg",
+          "isSection": false
+        },
+        {
+          "name": "Locote Verde",
+          "qtyPerPerson": 0.1,
+          "unit": "Kg",
+          "isSection": false
+        },
+        {
+          "name": "Cebolla",
+          "qtyPerPerson": 0.1,
+          "unit": "Kg",
+          "isSection": false
+        },
+        {
+          "name": "Cubitos",
+          "qtyPerPerson": 0.4,
+          "unit": "Kg",
+          "isSection": false
+        },
+        {
+          "name": "Disco de empanada",
+          "qtyPerPerson": 0.6,
+          "unit": "Unidades",
+          "isSection": false
+        }
+      ]
+    },
+    {
+      "name": "Cerdo Agridulce",
+      "sheet": "Buffet de Bocaditos",
+      "baseDiners": 10,
+      "ingredients": [
+        {
+          "name": "Muslo de Cerdo",
+          "qtyPerPerson": 0.52,
+          "unit": "Kg",
+          "isSection": false
+        },
+        {
+          "name": "Locote",
+          "qtyPerPerson": 0.025,
+          "unit": "Kg",
+          "isSection": false
+        },
+        {
+          "name": "Cebolla",
+          "qtyPerPerson": 0.015,
+          "unit": "Kg",
+          "isSection": false
+        },
+        {
+          "name": "SALSA",
+          "qtyPerPerson": 0,
+          "unit": "",
+          "isSection": true
+        },
+        {
+          "name": "Salsa de soja",
+          "qtyPerPerson": 0.02,
+          "unit": "Kg",
+          "isSection": false
+        },
+        {
+          "name": "Vinagre",
+          "qtyPerPerson": 0.02,
+          "unit": "Litros",
+          "isSection": false
+        },
+        {
+          "name": "Ketchup",
+          "qtyPerPerson": 0.02,
+          "unit": "Kg",
+          "isSection": false
+        },
+        {
+          "name": "Miel",
+          "qtyPerPerson": 0.025,
+          "unit": "Kg",
+          "isSection": false
+        }
+      ]
+    },
+    {
+      "name": "Pierna de Cerdo",
+      "sheet": "Buffet de Bocaditos",
+      "baseDiners": 10,
+      "ingredients": [
+        {
+          "name": "Muslo de Cerdo",
+          "qtyPerPerson": 0.52,
+          "unit": "Kg",
+          "isSection": false
+        },
+        {
+          "name": "Arizco",
+          "qtyPerPerson": 0.005,
+          "unit": "Kg",
+          "isSection": false
+        },
+        {
+          "name": "Ajo",
+          "qtyPerPerson": 1,
+          "unit": "Kg",
+          "isSection": false
+        }
+      ]
+    },
+    {
+      "name": "Medallones de Lomito c/Panceta",
+      "sheet": "Buffet de Bocaditos",
+      "baseDiners": 10,
+      "ingredients": [
+        {
+          "name": "Lomito",
+          "qtyPerPerson": 0.42,
+          "unit": "Kg",
+          "isSection": false
+        },
+        {
+          "name": "Vino Blanco",
+          "qtyPerPerson": 0.005,
+          "unit": "Litros",
+          "isSection": false
+        },
+        {
+          "name": "Ajo",
+          "qtyPerPerson": 1,
+          "unit": "Kg",
+          "isSection": false
+        }
+      ]
+    },
+    {
+      "name": "Tarta Cantina",
+      "sheet": "Buffet de Bocaditos",
+      "baseDiners": 140,
+      "ingredients": [
+        {
+          "name": "Zuquini",
+          "qtyPerPerson": 0.2,
+          "unit": "Kg",
+          "isSection": false
+        },
+        {
+          "name": "Berenjena",
+          "qtyPerPerson": 0.14,
+          "unit": "Kg",
+          "isSection": false
+        },
+        {
+          "name": "Cebolla",
+          "qtyPerPerson": 0.1,
+          "unit": "Kg",
+          "isSection": false
+        },
+        {
+          "name": "Pollo",
+          "qtyPerPerson": 0.1,
+          "unit": "Kg",
+          "isSection": false
+        },
+        {
+          "name": "Tapa1",
+          "qtyPerPerson": 1,
+          "unit": "Unidades",
+          "isSection": false
+        },
+        {
+          "name": "Tapa2",
+          "qtyPerPerson": 1,
+          "unit": "Unidades",
+          "isSection": false
+        }
+      ]
+    },
+    {
+      "name": "Tarta de Queso",
+      "sheet": "VARIOS",
+      "baseDiners": 3,
+      "ingredients": [
+        {
+          "name": "MASA",
+          "qtyPerPerson": 0,
+          "unit": "",
+          "isSection": true
+        },
+        {
+          "name": "Harina",
+          "qtyPerPerson": 0.135,
+          "unit": "Kg",
+          "isSection": false
+        },
+        {
+          "name": "Huevo",
+          "qtyPerPerson": 0.335,
+          "unit": "Unidades",
+          "isSection": false
+        },
+        {
+          "name": "RELLENO",
+          "qtyPerPerson": 0,
+          "unit": "",
+          "isSection": true
+        },
+        {
+          "name": "Crema de Leche",
+          "qtyPerPerson": 0.17,
+          "unit": "Litros",
+          "isSection": false
+        },
+        {
+          "name": "Cebolla",
+          "qtyPerPerson": 0.335,
+          "unit": "Kg",
+          "isSection": false
+        },
+        {
+          "name": "Huevo",
+          "qtyPerPerson": 1,
+          "unit": "Unidades",
+          "isSection": false
+        },
+        {
+          "name": "Queso Cremoso",
+          "qtyPerPerson": 0.135,
+          "unit": "Kg",
+          "isSection": false
+        }
+      ]
+    },
+    {
+      "name": "Pionono Verde",
+      "sheet": "VARIOS",
+      "baseDiners": 2,
+      "ingredients": [
+        {
+          "name": "MASA",
+          "qtyPerPerson": 0,
+          "unit": "",
+          "isSection": true
+        },
+        {
+          "name": "Harina",
+          "qtyPerPerson": 0.15,
+          "unit": "Kg",
+          "isSection": false
+        },
+        {
+          "name": "Acelga",
+          "qtyPerPerson": 1,
+          "unit": "Kg",
+          "isSection": false
+        },
+        {
+          "name": "Azucar",
+          "qtyPerPerson": 0.15,
+          "unit": "Kg",
+          "isSection": false
+        },
+        {
+          "name": "Huevo",
+          "qtyPerPerson": 3,
+          "unit": "Unidades",
+          "isSection": false
+        },
+        {
+          "name": "RELLENO",
+          "qtyPerPerson": 0,
+          "unit": "",
+          "isSection": true
+        },
+        {
+          "name": "Atun",
+          "qtyPerPerson": 1,
+          "unit": "Kg",
+          "isSection": false
+        },
+        {
+          "name": "Mayonesa",
+          "qtyPerPerson": 0.05,
+          "unit": "Kg",
+          "isSection": false
+        },
+        {
+          "name": "Locote",
+          "qtyPerPerson": 0.05,
+          "unit": "Kg",
+          "isSection": false
+        },
+        {
+          "name": "Huevo Codornis",
+          "qtyPerPerson": 9,
+          "unit": "Unidades",
+          "isSection": false
+        },
+        {
+          "name": "Queso Polenghi",
+          "qtyPerPerson": 0.05,
+          "unit": "Kg",
+          "isSection": false
+        },
+        {
+          "name": "Queso Cremoso",
+          "qtyPerPerson": 0.05,
+          "unit": "Kg",
+          "isSection": false
+        }
+      ]
+    },
+    {
+      "name": "Pionono Verde",
+      "sheet": "VARIOS",
+      "baseDiners": 2,
+      "ingredients": [
+        {
+          "name": "MASA",
+          "qtyPerPerson": 0,
+          "unit": "",
+          "isSection": true
+        },
+        {
+          "name": "Harina",
+          "qtyPerPerson": 0.15,
+          "unit": "Kg",
+          "isSection": false
+        },
+        {
+          "name": "Acelga",
+          "qtyPerPerson": 1,
+          "unit": "Kg",
+          "isSection": false
+        },
+        {
+          "name": "Azucar",
+          "qtyPerPerson": 0.15,
+          "unit": "Kg",
+          "isSection": false
+        },
+        {
+          "name": "Huevo",
+          "qtyPerPerson": 3,
+          "unit": "Unidades",
+          "isSection": false
+        },
+        {
+          "name": "RELLENO",
+          "qtyPerPerson": 0,
+          "unit": "",
+          "isSection": true
+        },
+        {
+          "name": "Atun",
+          "qtyPerPerson": 1,
+          "unit": "Kg",
+          "isSection": false
+        },
+        {
+          "name": "Mayonesa",
+          "qtyPerPerson": 0.05,
+          "unit": "Kg",
+          "isSection": false
+        },
+        {
+          "name": "Locote",
+          "qtyPerPerson": 0.05,
+          "unit": "Kg",
+          "isSection": false
+        },
+        {
+          "name": "Huevo Codornis",
+          "qtyPerPerson": 9,
+          "unit": "Unidades",
+          "isSection": false
+        },
+        {
+          "name": "Queso Polenghi",
+          "qtyPerPerson": 0.05,
+          "unit": "Kg",
+          "isSection": false
+        },
+        {
+          "name": "Queso Cremoso",
+          "qtyPerPerson": 0.05,
+          "unit": "Kg",
+          "isSection": false
+        }
+      ]
+    }
+  ],
+  "defaultMappings": {
+    "pechuga de pollo": "PECHUGA DESHUESADA K-ZERO S/PIEL.",
+    "queso roquefort": "QUESO ROQUEFORT LA QUESERA",
+    "crema de leche": "*CREMA DE LECHE SACHET LACTOLANDA 1 LITRO",
+    "leche": "*LECHE EN POLVO DESCREMADA ILOLAY 30 X 5 GRS:_",
+    "huevo": "HUEVO CLASE A NUTRIHUEVOS X 30",
+    "harina": "HARINA HILDEBRAND 1KG TIPO 0000",
+    "manteca": "MANTECA VEGETAL OK LT X KG",
+    "cubitos": "CALDO EN CUBOS",
+    "cubito": "CALDO EN CUBOS",
+    "locote rojo": "LOCOTE ROJO X KG.",
+    "locote rojo ": "LOCOTE ROJO X KG.",
+    "locote verde": "LOCOTE VERDE X KG",
+    "zanahoria": "ZANAHORIA X KG.",
+    "cebolla": "CEBOLLA X KG.",
+    "ajo": "*AJO MAXI EN MALLA X 3 UND",
+    "pierna de cerdo": "CERDO LOMO",
+    "queso sandwich": "QUESO LACTOLANDA SANDWICH DAMBO",
+    "jamonada": "JAMONADA OCHSI 5KG.",
+    "panceta": "PAQ.PANCETA AHUMADA OCHSI FETAS",
+    "carne molida": "CARNE MOLIDA DE 1RA X KG",
+    "disco de empanada": "DISCO EMPANADA EDWARD P/HORNO GRANDE.",
+    "lomo": "LOMO KG",
+    "lomito": "LOMITO X KG",
+    "acelga": "ACELGA MAZO.",
+    "atun": "ATUN RALLADO INDEMAR EN AGUA 160G",
+    "azucar": "AZUCAR ALCOTEC 1KG",
+    "vinagre": "VINAGRE  MENOYO ALCOHOL 1 L",
+    "vino blanco": "VINO UVITA 1LT BLANCO TETRA.",
+    "mostaza": "MOSTAZA SAVORA 3KG. ORIG.",
+    "ketchup": "KETCHUP HELLMANNS 500GR C/TOMATE",
+    "kechup": "KETCHUP HELLMANNS 500GR C/TOMATE",
+    "muslo de cerdo": "CERDO MUSLO X KG.",
+    "tarta cantina": "TORTA CUADRIL"
+  }
+}
