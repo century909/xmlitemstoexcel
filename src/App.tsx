@@ -80,7 +80,7 @@ function App() {
       </main>
 
       <footer className="App-footer">
-        <p>&copy; {new Date().getFullYear()} Nilda Proyectos - Todos los derechos reservados. Configurado con SSH para el jugador ID {localStorage.getItem('player_id') || '47c6f29a-8cb4-41e3-9c8c-cbd37bae02b7'}.</p>
+        <p>&copy; {new Date().getFullYear()} Nilda Proyectos - Todos los derechos reservados.</p>
       </footer>
     </div>
   );
