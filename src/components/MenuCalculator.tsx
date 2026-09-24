@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import * as XLSX from 'xlsx';
 import recetarioData from '../assets/recetario.json';
+import { findBestSemanticMatch } from '../services/aiSemanticMatcher';
 
 // Simple SVG Icons
 const CalendarIcon = () => (
@@ -113,6 +114,11 @@ export default function MenuCalculator({ onBackToHome }: MenuCalculatorProps) {
     } catch { return {}; }
   });
 
+  // AI Semantic Matching State
+  const [aiMappings, setAiMappings] = useState<Record<string, { mappedItem: string; score: number }>>({});
+  const [isAiMatching, setIsAiMatching] = useState<boolean>(false);
+  const [aiStatusText, setAiStatusText] = useState<string>('');
+
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   // Active recipe object
@@ -124,6 +130,40 @@ export default function MenuCalculator({ onBackToHome }: MenuCalculatorProps) {
       setDiners(currentRecipe.baseDiners);
     }
   }, [selectedRecipeName]);
+
+  // Trigger AI Semantic Matching when prices or recipe changes
+  const runAiSemanticMatching = async () => {
+    if (previousMonthPrices.length === 0 || !currentRecipe) return;
+    setIsAiMatching(true);
+    setAiStatusText('Inicializando modelo IA (Transformers.js)...');
+
+    const candidateDescriptions = previousMonthPrices.map(p => p.description);
+    const newAiMappings: Record<string, { mappedItem: string; score: number }> = { ...aiMappings };
+
+    for (let i = 0; i < currentRecipe.ingredients.length; i++) {
+      const ing = currentRecipe.ingredients[i];
+      if (ing.isSection) continue;
+
+      setAiStatusText(`Analizando IA (${i + 1}/${currentRecipe.ingredients.length}): ${ing.name}...`);
+      const match = await findBestSemanticMatch(ing.name, candidateDescriptions, 0.45);
+      if (match) {
+        newAiMappings[ing.name] = {
+          mappedItem: match.matchedDescription,
+          score: match.score,
+        };
+      }
+    }
+
+    setAiMappings(newAiMappings);
+    setIsAiMatching(false);
+    setAiStatusText('');
+  };
+
+  useEffect(() => {
+    if (priceLoadingStatus === 'loaded' && previousMonthPrices.length > 0 && currentRecipe) {
+      runAiSemanticMatching();
+    }
+  }, [selectedRecipeName, priceLoadingStatus]);
 
   // Handle selected month changes to compute previous month and load prices
   useEffect(() => {
@@ -251,6 +291,7 @@ export default function MenuCalculator({ onBackToHome }: MenuCalculatorProps) {
     if (window.confirm('¿Deseas restablecer todos los mapeos manuales y precios ingresados a sus valores predeterminados?')) {
       setCustomMappings({});
       setCustomPrices({});
+      setAiMappings({});
       localStorage.removeItem('menu_custom_mappings');
       localStorage.removeItem('menu_custom_prices');
     }
@@ -260,19 +301,46 @@ export default function MenuCalculator({ onBackToHome }: MenuCalculatorProps) {
   const getIngredientPricing = (ingName: string) => {
     const normName = ingName.toLowerCase().trim();
     
-    // 1. Check custom overrides first
+    // 1. Check custom price overrides first
     if (customPrices[ingName] !== undefined) {
       return {
         mappedItem: 'Costo Manual (Usuario)',
         unitPrice: customPrices[ingName],
-        source: 'user_override' as const
+        source: 'user_override' as const,
+        score: 1.0
       };
     }
 
-    // 2. Identify target description in Excel
+    // 2. Check custom user dropdown mappings
     let targetDesc = customMappings[ingName];
+    if (targetDesc) {
+      const found = previousMonthPrices.find(item => item.description.toUpperCase() === targetDesc.toUpperCase());
+      if (found) {
+        return {
+          mappedItem: found.description,
+          unitPrice: found.price,
+          source: 'excel_data' as const,
+          score: 1.0
+        };
+      }
+    }
+
+    // 3. Check AI Semantic Embeddings Match (Transformers.js)
+    if (aiMappings[ingName]) {
+      const aiItem = aiMappings[ingName];
+      const found = previousMonthPrices.find(item => item.description.toUpperCase() === aiItem.mappedItem.toUpperCase());
+      if (found) {
+        return {
+          mappedItem: found.description,
+          unitPrice: found.price,
+          source: 'ai_semantic' as const,
+          score: aiItem.score
+        };
+      }
+    }
+
+    // 4. Check default static mappings dictionary from JSON
     if (!targetDesc) {
-      // Check default mappings dictionary
       targetDesc = defaultMappings[normName];
     }
     
@@ -282,12 +350,10 @@ export default function MenuCalculator({ onBackToHome }: MenuCalculatorProps) {
       foundItem = previousMonthPrices.find(item => item.description.toUpperCase() === targetDesc.toUpperCase());
     }
     
-    // 3. If still not found, do fuzzy search
+    // 5. Fallback fuzzy substring match
     if (!foundItem && previousMonthPrices.length > 0) {
-      // Try exact string matching on lowercase
       foundItem = previousMonthPrices.find(item => item.description.toLowerCase() === normName);
       
-      // Try partial matching
       if (!foundItem) {
         foundItem = previousMonthPrices.find(item => 
           item.description.toLowerCase().includes(normName) || normName.includes(item.description.toLowerCase())
@@ -299,14 +365,16 @@ export default function MenuCalculator({ onBackToHome }: MenuCalculatorProps) {
       return {
         mappedItem: foundItem.description,
         unitPrice: foundItem.price,
-        source: 'excel_data' as const
+        source: 'excel_data' as const,
+        score: 0.8
       };
     }
 
     return {
       mappedItem: targetDesc || 'No encontrado',
       unitPrice: 0,
-      source: 'not_found' as const
+      source: 'not_found' as const,
+      score: 0
     };
   };
 
@@ -318,7 +386,7 @@ export default function MenuCalculator({ onBackToHome }: MenuCalculatorProps) {
   // Escalated ingredient list computation
   const calculatedIngredients = currentRecipe?.ingredients.map(ing => {
     if (ing.isSection) {
-      return { ...ing, scaledQty: 0, unitPrice: 0, totalCost: 0, mappedItem: '', source: 'section' as const };
+      return { ...ing, scaledQty: 0, unitPrice: 0, totalCost: 0, mappedItem: '', source: 'section' as const, score: 0 };
     }
     
     const scaledQty = ing.qtyPerPerson * diners;
@@ -331,7 +399,8 @@ export default function MenuCalculator({ onBackToHome }: MenuCalculatorProps) {
       unitPrice: pricing.unitPrice,
       totalCost,
       mappedItem: pricing.mappedItem,
-      source: pricing.source
+      source: pricing.source,
+      score: pricing.score
     };
   }) || [];
 
@@ -500,12 +569,40 @@ export default function MenuCalculator({ onBackToHome }: MenuCalculatorProps) {
                 <span>Base Conectada</span>
               </div>
               <p>Se encontraron <strong>{previousMonthPrices.length}</strong> productos y costos promedio registrados en <strong>{previousMonthStr}</strong>.</p>
-              <button 
-                onClick={() => fileInputRef.current?.click()} 
-                className="btn-link-action"
-              >
-                Actualizar base con Excel (.xlsx)
-              </button>
+              <div className="ai-actions-row" style={{ marginTop: '8px', display: 'flex', gap: '10px', alignItems: 'center' }}>
+                <button 
+                  onClick={runAiSemanticMatching} 
+                  disabled={isAiMatching}
+                  className="btn-ai-action"
+                  style={{
+                    backgroundColor: '#4f46e5',
+                    color: '#fff',
+                    border: 'none',
+                    padding: '6px 12px',
+                    borderRadius: '6px',
+                    cursor: 'pointer',
+                    fontSize: '0.85rem',
+                    fontWeight: 600,
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                    gap: '6px'
+                  }}
+                >
+                  {isAiMatching ? '🤖 Analizando IA...' : '🤖 Búsqueda Semántica IA'}
+                </button>
+                <button 
+                  onClick={() => fileInputRef.current?.click()} 
+                  className="btn-link-action"
+                >
+                  Actualizar base con Excel (.xlsx)
+                </button>
+              </div>
+              {isAiMatching && (
+                <div style={{ marginTop: '6px', fontSize: '0.8rem', color: '#6366f1', display: 'flex', alignItems: 'center', gap: '6px' }}>
+                  <div className="spinner mini"></div>
+                  <span>{aiStatusText}</span>
+                </div>
+              )}
             </div>
           )}
 
@@ -614,18 +711,25 @@ export default function MenuCalculator({ onBackToHome }: MenuCalculatorProps) {
                   </td>
                   <td>
                     {priceLoadingStatus === 'loaded' ? (
-                      <select
-                        value={item.mappedItem || ''}
-                        onChange={(e) => handleUpdateMapping(item.name, e.target.value)}
-                        className={`supermarket-mapping-select ${item.source === 'not_found' ? 'unmapped' : ''}`}
-                      >
-                        <option value="">-- No mapeado (Sin precio) --</option>
-                        {previousMonthPrices.map((consumo, cidx) => (
-                          <option key={cidx} value={consumo.description}>
-                            {consumo.description}
-                          </option>
-                        ))}
-                      </select>
+                      <div style={{ display: 'flex', flexDirection: 'column', gap: '4px' }}>
+                        <select
+                          value={item.mappedItem || ''}
+                          onChange={(e) => handleUpdateMapping(item.name, e.target.value)}
+                          className={`supermarket-mapping-select ${item.source === 'not_found' ? 'unmapped' : ''}`}
+                        >
+                          <option value="">-- No mapeado (Sin precio) --</option>
+                          {previousMonthPrices.map((consumo, cidx) => (
+                            <option key={cidx} value={consumo.description}>
+                              {consumo.description}
+                            </option>
+                          ))}
+                        </select>
+                        {item.source === 'ai_semantic' && (
+                          <span style={{ fontSize: '0.72rem', color: '#4f46e5', fontWeight: 600 }}>
+                            🤖 Mapeado por IA ({(item.score * 100).toFixed(0)}% de similitud)
+                          </span>
+                        )}
+                      </div>
                     ) : (
                       <span className="text-light text-xs">Sube la base para mapear</span>
                     )}
