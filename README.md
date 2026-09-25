@@ -1,50 +1,67 @@
-# 🧾 XML Items to Excel
+# 🧾 XML Items to Excel & AI Menu Costing Calculator
 
-Extractor de ítems de facturas electrónicas XML (SIFEN/DNIT - Paraguay) con consolidado mensual de productos y costos.
+Aplicación PWA para la extracción de facturas electrónicas XML (SIFEN/DNIT - Paraguay), consolidación mensual de compras y **calculadora de menús con Inteligencia Artificial Semántica local**.
 
-## ¿Qué hace?
+---
 
-Parsea archivos XML de facturas electrónicas paraguayas, extrae los ítems/productos de cada una, los agrupa por descripción y genera un consolidado con:
+## 🚀 ¿Qué hace la aplicación?
 
-- **Descripción del producto** (normalizada a mayúsculas)
-- **Cantidad total** comprada en el período
-- **Costo total** acumulado
-- **Precio promedio** por unidad
+1. **Extractor de Facturas XML:** Parsea facturas electrónicas SIFEN, agrupa consumos mensuales y calcula el costo total y el precio promedio por unidad de cada insumo comprados en el mes.
+2. **Calculadora de Menús y Costos:** Cotiza recetas del recetario corporativo escalando ingredientes por número de comensales.
+3. **Motor de IA Semántica en el Navegador:** Utiliza modelos de redes neuronales (*Transformers.js*) corriendo en cliente para emparejar automáticamente los ingredientes de la receta con los productos reales de las facturas mediante **embeddings vectoriales y similitud coseno**.
 
-Ideal para responder: *"¿Cuánto gasté en X este mes?"*
+---
 
-## Funcionalidades
+## 🤖 Búsqueda Semántica con Inteligencia Artificial (Local & Offline)
 
-- 📁 **Carga local** — Seleccioná múltiples archivos .xml a mano
-- 📧 **Integración Gmail** — Conectá tu cuenta de Google y buscá facturas XML adjuntas por mes y empresa (OAuth2)
-- 📊 **Exportación XLSX** — Descargá el consolidado en Excel con fila de totales
-- 🔄 **Agregación automática** — Productos con el mismo nombre se consolidan en una sola fila
-- 🌙 **Tema claro/oscuro** — Toggle de tema con persistencia en localStorage
-- 📱 **PWA** — Instalable como aplicación (manifest + service worker)
+En lugar de simples comparaciones de texto o subcadenas (`includes`), la aplicación integra un modelo de IA que comprende la **naturaleza conceptual** de los insumos.
 
-## Stack
+### ¿Cómo funciona la IA?
+* **Modelo:** `Xenova/all-MiniLM-L6-v2` (Sentence-Transformers) empaquetado en WebAssembly/ONNX Runtime.
+* **Embeddings Vectoriales:** Convierte cada ingrediente en un vector de **384 dimensiones**.
+* **Similitud Coseno:** Calcula la distancia geométrica entre el ingrediente de la receta y los productos comprados en las facturas.
+* **Diferenciación Conceptual:** La IA sabe que el ingrediente `"Tomate"` coincide con `"TOMATE FRESCO KILO"` ($\sim 87\%$ similitud), pero descarta `"SALSA DE TOMATE LATA"` por tratarse de un producto procesado/conserva.
+* **Privacidad Total:** Funciona **100% offline y en el navegador** sin enviar datos a APIs externas ni requerir API Keys.
 
-- React 19 + TypeScript
-- Vite 8
-- `fast-xml-parser` — Parseo de XML SIFEN
-- `xlsx` — Generación de archivos Excel
-- `@react-oauth/google` — Autenticación Gmail
-- `vite-plugin-pwa` — Soporte PWA
+---
 
-## Estructura de datos esperada
+## 🧠 Lógica y Prioridad de Cálculo de Costos
 
-El parser busca la estructura estándar SIFEN:
+Para determinar el precio unitario de un ingrediente en la calculadora, se aplica la siguiente jerarquía:
 
 ```
-rDE → DE → gDtipDE → gCamItem[]
-  ├── dDesProSer      → Descripción del producto
-  ├── dCantProSer     → Cantidad
-  └── gValorItem
-       ├── gValorRestaItem.dTotOpeItem  → Total por ítem
-       └── dTotBruOpeItem               → Fallback
+[Ingrediente de Receta]
+        │
+        ├─► 1. Sobrescritura Manual (Precio escrito por el usuario en la tabla)
+        ├─► 2. Mapeo Personalizado (Selección del desplegable por el usuario)
+        ├─► 3. 🤖 IA Semántica (Embeddings vectoriales de Transformers.js)
+        ├─► 4. Mapeo Estático (Diccionario defaultMappings en recetario.json)
+        └─► 5. Búsqueda Texto Fallback (Coincidencia aproximada de cadenas)
 ```
 
-## Instalación
+---
+
+## 📊 Funcionalidades Clave
+
+- 📁 **Carga de XML Local o Gmail:** Importación manual de archivos o descarga automática desde Gmail vía OAuth2.
+- 👨‍🍳 **Escalado de Recetas:** Cálculo automático de insumos totales según cantidad de comensales.
+- 🤖 **Mapeo Inteligente por IA:** Asignación automática de equivalentes de supermercado basada en vectores semánticos.
+- 📊 **Exportación Excel (.xlsx):** Generación de presupuestos detallados por menú y consolidados mensuales.
+- 🌙 **PWA e Interfaz Moderna:** Funciona instalable, con soporte offline y caché local (IndexedDB).
+
+---
+
+## 🛠️ Stack Tecnológico
+
+- **Frontend:** React 19 + TypeScript + Vite 8
+- **Inteligencia Artificial:** `@xenova/transformers` (WebAssembly ONNX)
+- **Parseo XML:** `fast-xml-parser` (SIFEN Paraguay)
+- **Hojas de Cálculo:** `xlsx` (SheetJS)
+- **OAuth Google:** `@react-oauth/google`
+
+---
+
+## ⚙️ Instalación y Desarrollo
 
 ```bash
 cd xmlitemstoexcel
@@ -52,41 +69,9 @@ npm install
 npm run dev
 ```
 
-## Build
+### Build para Producción
 
 ```bash
 npm run build
 ```
-
-Los archivos de producción se generan en `dist/`.
-
-## Configuración Gmail
-
-1. Crear proyecto en [Google Cloud Console](https://console.cloud.google.com/)
-2. Habilitar Gmail API
-3. Crear credenciales OAuth2 (Web client)
-4. Colocar el `client_secret_*.json` en la raíz del proyecto
-5. Configurar el Client ID en `index.html` (script de Google Identity)
-
----
-
-## 🚧 Funcionalidades Pendientes
-
-### 1. Guardado en Google Drive
-
-Exportar los archivos XLSX generados directamente a Google Drive del usuario, permitiendo:
-
-- Selección de carpeta destino en Drive
-- Auto-nombrado por mes (ej: `consumo_2026-05.xlsx`)
-- Overwrite o versión nueva si el archivo ya existe
-- Requiere agregar scope `https://www.googleapis.com/auth/drive.file` al OAuth
-
-### 2. Buscador de ítem por nombre
-
-Filtro de búsqueda en tiempo real sobre la tabla de ítems consolidados:
-
-- Input de texto con debounce
-- Búsqueda case-insensitive sobre la descripción
-- Highlight de coincidencias
-- Filtro parcial (match por substring, no solo exacto)
-- Mostrar contador de resultados filtrados vs total
+Los archivos de producción optimizados se generan en `dist/`.
